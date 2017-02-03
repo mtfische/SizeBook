@@ -1,5 +1,6 @@
 package com.example.sizebook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +11,16 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+
 public class editUserData extends AppCompatActivity {
+    private static final String FILENAME = "file.sav";
+    ArrayList<Person> people = new ArrayList<Person>();
 
     public String packageData()
     {
@@ -117,7 +127,14 @@ public class editUserData extends AppCompatActivity {
     {
         Intent intent = new Intent(this,editUserData.class);
         intent.putExtra("obj", this.packageData());
+        intent.putExtra("Page", "add");
         startActivity(intent);
+    }
+
+    public void saveToFile(ArrayList<Person> people){
+
+        Gson gson = new Gson();
+        gson.toJson(people);
     }
 
     @Override
@@ -126,5 +143,22 @@ public class editUserData extends AppCompatActivity {
         setContentView(R.layout.activity_edit_user_data);
         Intent entryIntent = getIntent();
         ViewGroup entrylayout = (ViewGroup) findViewById(R.id.ScrollView);
+    }
+
+    private void saveInFile(ArrayList<Person> people) {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            gson.toJson(people, out);
+            out.flush();
+            fos.close();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException();
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 }

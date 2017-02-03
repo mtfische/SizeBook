@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f83b00041ecfba705603fec40363416c7de69719">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_778d0d7bbc446ea1a5bf9704cd6e7ddb3e4036b3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.0.1_206dde955c2d308e2ef4a9efb19ba7c1270a6a0e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.0.1_63991bc0106d3303bcbde6094b87c2a7cc89e5d9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_7c095a75a4718c2056eeec2b7dbbb8f2dbcdd79f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a142ab55f6121ef839f3382f282edea83a4a6f2f">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_8a0c8f897f98c9902ac3bdaf8d582e63e2492937\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.0.1_4159bfb11cfa1244d90aea5792a49104ae954da6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.1_eed610ae3576f4f1760531947685e50299e7d7a6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.0.1_b599e8b5f37f1bc480595728e1f9a54d8faabb49\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_7be0202d3271e5c9f21317eb2d98b2c33084b83a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.0.1_aec09ef05982f1771eb0f7c138ff4ef12ad6d9b5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.1_968ce4f7a51a7bbe0332d2b98784979ff1a63df2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="344837cdbbd8ba8689d68818d538527d0f2dba7a">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_6dae3ffb5be0bb4f04d4f65b9d47d85ff38ca3cf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_1d2c735d8dfa0573619826f9d8524b9b31546506\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_5e41f52590198b5b2ddd1715ff39e40f1f841e7f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.0.1_be9b5b7fc1c65d029e924b2bfae94cefa889058b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.0.1_ab07ab64d2e91e21551b085e0896f2f5943b4731\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.1_74ddf66c6be81fc458e7005b9faacc61a3f6694b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Malcolm\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.0\c4ba5371a29ac9b2ad6129b1d39ea38750043eff\gson-2.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.8.0_7ca9ea96eef95cc6d650c9b78af44fb98938da6f\classes.dex" />
+    </item>
+
+</items>
