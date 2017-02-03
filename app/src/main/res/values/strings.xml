@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SizeBook</string>
+    <string name="formName">Your Name</string>
+    <string name="formNeck">Neck Size(inches)</string>
+    <string name="formBust">Bust Size(inches)</string>
+    <string name="formChest">Chest Size(inches)</string>
+    <string name="formWaist">waist Size(inches)</string>
+    <string name="formHip">Hip Size(inches)</string>
+    <string name="formInseam">Inseam length(inches)</string>
+    <string name="formComment">Comment Field</string>
+</resources>
