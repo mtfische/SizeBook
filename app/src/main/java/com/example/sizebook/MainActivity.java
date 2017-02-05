@@ -1,10 +1,13 @@
 package com.example.sizebook;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -30,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void addUser(View view)
     {
+        Gson gson = new Gson();
         Intent intent = new Intent(this,editUserData.class);
+        String array = gson.toJson(people);
+        intent.putExtra("obj", array);
         startActivity(intent);
     }
 
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadFromFile();
         Gson gson = new Gson();
         ListView listView;
         Intent entryIntent = getIntent();
@@ -49,18 +56,24 @@ public class MainActivity extends AppCompatActivity {
         if(page == null){page = "none";}
         Log.d("tag", "Page: "+page.toString());
         if(page.equals("add")){
-            String obj = entryIntent.getStringExtra("obj");
-            Log.d("tag", "Person: "+obj.toString());
-            Person person = gson.fromJson(obj,Person.class);
-            Log.d("tag","person from JSON:"+person.getName());
-            people.add(person);
+            //String obj = entryIntent.getStringExtra("obj");
+            //Log.d("tag", "Person: "+obj.toString());
+            //Person person = gson.fromJson(obj,Person.class);
+            //Log.d("tag","person from JSON:"+person.getName());
+            //people.add(person);
             Log.d("tag","people:"+people.size());
-            listView = (ListView)findViewById(R.id.listView);
-            PeopleAdapter adapter = new PeopleAdapter(people, this);
-            listView.setAdapter(adapter);
-
-
         }
+
+        listView = (ListView)findViewById(R.id.listView);
+        final PeopleAdapter adapter = new PeopleAdapter(people, this);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                AlertDialog.Builder adb=new AlertDialog.Builder(MainActivity.this);
+                final int positionToRemove = position;
+                //v.findViewById(id);
+            }
+        });
     }
 
     private void loadFromFile() {
@@ -82,3 +95,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
+/*
+* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                AlertDialog.Builder adb=new AlertDialog.Builder(MainActivity.this);
+                adb.setTitle("Delete?");
+                adb.setMessage("Are you sure you want to delete entry");
+                final int positionToRemove = position;
+                adb.setNegativeButton("Cancel", null);
+                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        people.remove(positionToRemove);
+                        adapter.notifyDataSetChanged();
+                    }});
+                adb.show();
+            }
+        });
+* */

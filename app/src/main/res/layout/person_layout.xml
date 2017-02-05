@@ -1,21 +1,80 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:textStyle="bold"
-    ></TextView>
+        android:textSize="26sp"
+        android:textStyle="bold">
+    </TextView>
 
     <TextView
-        android:id="@+id/dist"
+        android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="8dp"
         android:textStyle="italic">
     </TextView>
+    <TextView
+        android:id="@+id/bust"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="8dp"
+        android:textStyle="italic"
+        android:visibility="gone">
+    </TextView>
+    <TextView
+        android:id="@+id/chest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="8dp"
+        android:textStyle="italic"
+        android:visibility="gone">
+    </TextView>
+    <TextView
+        android:id="@+id/waist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="8dp"
+        android:textStyle="italic"
+        android:visibility="gone">
+    </TextView>
+    <TextView
+        android:id="@+id/inseam"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="8dp"
+        android:textStyle="italic"
+        android:visibility="gone">
+    </TextView>
+    <Button
+        android:text="Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/edit"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="editUser"
+        android:visibility="gone">
+    </Button>
+    <Button
+        android:text="Delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/delete"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="deleteUser"
+        android:visibility="gone">
+    </Button>
 </LinearLayout>

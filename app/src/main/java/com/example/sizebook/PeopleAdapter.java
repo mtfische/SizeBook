@@ -2,6 +2,7 @@ package com.example.sizebook;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +36,25 @@ public class PeopleAdapter extends ArrayAdapter<Person> {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.person_layout, parent, false);
         }
-// Now we can fill the layout with the right values
+        // Now we can fill the layout with the right values
         TextView tv = (TextView) convertView.findViewById(R.id.name);
-        TextView distView = (TextView) convertView.findViewById(R.id.dist);
+        TextView bustField = (TextView) convertView.findViewById(R.id.bust);
+        TextView chestField = (TextView) convertView.findViewById(R.id.chest);
+        TextView waistField = (TextView) convertView.findViewById(R.id.waist);
+        TextView inseamField = (TextView) convertView.findViewById(R.id.inseam);
+        TextView date = (TextView) convertView.findViewById(R.id.date);
         Person p = people.get(position);
 
+        //Log.d("tag", p.toString());
+        //Log.d("tag", toString().valueOf(p.getChest()));
+
+
         tv.setText(p.getName());
-        distView.setText("" + p.getName());
+        if(p.getBust() != 0){bustField.setText("Bust Size:" + p.getBust());}
+        if(p.getChest() != 0){chestField.setText("Chest Size:" + p.getBust());}
+        if(p.getWaist() != 0){waistField.setText("Waist Size:" + p.getWaist());}
+        if(p.getInseam() != 0){inseamField.setText("Inseam Size:" + p.getBust());}
+        date.setText("Last updated:" + p.getDate().toString());
 
         return convertView;
     }

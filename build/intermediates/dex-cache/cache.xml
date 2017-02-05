@@ -43,7 +43,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="a142ab55f6121ef839f3382f282edea83a4a6f2f">
+        sha1="d4679f03f79b5436dfed640515e83b5a02c51377">
         <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_8a0c8f897f98c9902ac3bdaf8d582e63e2492937\classes.dex" />
     </item>
     <item
@@ -106,7 +106,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="344837cdbbd8ba8689d68818d538527d0f2dba7a">
+        sha1="d5816c86f9dba0786309623daafb672dd78d6629">
         <dex dex="C:\Users\Malcolm\Desktop\cmput301\SizeBook\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_6dae3ffb5be0bb4f04d4f65b9d47d85ff38ca3cf\classes.dex" />
     </item>
     <item

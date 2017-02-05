@@ -10,19 +10,24 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+import static com.example.sizebook.R.id.listView;
 
 public class editUserData extends AppCompatActivity {
     private static final String FILENAME = "file.sav";
-    ArrayList<Person> people = new ArrayList<Person>();
+    Gson gson = new Gson();
+    ArrayList<Person> people;
 
-    public String packageData()
+    public Person packageData()
     {
         int[] floatIds = {R.id.neck, R.id.bust, R.id.chest, R.id.waist, R.id.hip, R.id.inseam};
         float[] floatRes = new float[6];
@@ -34,7 +39,7 @@ public class editUserData extends AppCompatActivity {
             try{
                 final EditText field = (EditText) findViewById(id);
                 float num = parseFloat(field, field.getText().toString());
-                floatRes[0] = num;
+                floatRes[i] = num;
 
             }
             catch(FieldException e) {
@@ -43,6 +48,7 @@ public class editUserData extends AppCompatActivity {
                 field.setError(e.getMessage());
                 errorFlag = true;
             }
+            i++;
         }
         String name = "";
         String comment = "";
@@ -77,7 +83,10 @@ public class editUserData extends AppCompatActivity {
         }
 
             if (!errorFlag) {
-                Log.d("tag", "error flag: "+errorFlag);
+                int j;
+                for(j = 0; j<6; j++) {
+                    Log.d("tag", "values: " + floatRes[j]);
+                }
                 Person form = new Person(name);
                 form.setNeck(floatRes[0]);
                 form.setBust(floatRes[1]);
@@ -87,8 +96,7 @@ public class editUserData extends AppCompatActivity {
                 form.setInseam(floatRes[5]);
                 form.setComment(comment);
                 Log.d("tag", "person complete");
-                Gson gson = new Gson();
-                return gson.toJson(form);
+                return form;
             }
             //Log.d("tag", "name blank");
             return null;
@@ -112,11 +120,14 @@ public class editUserData extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
         Log.d("tag", "packaging");
-        String temp = packageData();
+        Person temp = packageData();
+        //Log.d("tag", "temp:"+temp.getName());
 
         if(temp != null) {
             Log.d("tag", "Person: "+temp.toString());
-            intent.putExtra("obj", this.packageData());
+            people.add(temp);
+            saveInFile();
+            //intent.putExtra("obj", this.packageData());
             intent.putExtra("Page", "add");
             startActivity(intent);
         }
@@ -125,15 +136,13 @@ public class editUserData extends AppCompatActivity {
 
     public void cancel(View view)
     {
-        Intent intent = new Intent(this,editUserData.class);
-        intent.putExtra("obj", this.packageData());
-        intent.putExtra("Page", "add");
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("Page", "Cancel");
         startActivity(intent);
     }
 
-    public void saveToFile(ArrayList<Person> people){
+    public void saveToFile(){
 
-        Gson gson = new Gson();
         gson.toJson(people);
     }
 
@@ -142,10 +151,15 @@ public class editUserData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user_data);
         Intent entryIntent = getIntent();
+        String obj = entryIntent.getStringExtra("obj");
+        Log.d("tag", "Json people: "+obj);
+        Type listType = new TypeToken<ArrayList<Person>>(){}.getType();
+        people = gson.fromJson(obj, listType);
+        Log.d("tag", "Person: "+people.toString());
         ViewGroup entrylayout = (ViewGroup) findViewById(R.id.ScrollView);
     }
 
-    private void saveInFile(ArrayList<Person> people) {
+    private void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
