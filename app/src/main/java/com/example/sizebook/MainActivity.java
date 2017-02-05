@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -25,22 +27,41 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String FILENAME = "file.sav";
     ArrayList<Person> people = new ArrayList<Person>();
+    final PeopleAdapter adapter = new PeopleAdapter(people, this);
 
 
 
 
 
+    public void editUser(View v){
+        final EditText namefield = (EditText) v.findViewById(R.id.name);
+        int position = getIndex(namefield.getText().toString());
+        Gson gson = new Gson();
+        Intent intent = new Intent(this,editUserData.class);
+        String array = gson.toJson(people);
+        intent.putExtra("obj", array);
+        startActivity(intent);
+        adapter.notifyDataSetChanged();
+    }
 
-    public void addUser(View view)
+    public void addUser(View v)
     {
         Gson gson = new Gson();
         Intent intent = new Intent(this,editUserData.class);
         String array = gson.toJson(people);
         intent.putExtra("obj", array);
         startActivity(intent);
+        adapter.notifyDataSetChanged();
     }
 
-
+    public int getIndex(String name) {
+        for(Person person: people){
+            if(person.getName().equals(name)){
+                return people.indexOf(person);
+            }
+        }
+        return -1;
+    }
 
     /** Called when the activity is first created. */
     @Override
@@ -49,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         loadFromFile();
         Gson gson = new Gson();
-        ListView listView;
+        final ListView listView;
         Intent entryIntent = getIntent();
         //String page = "";
         String page = entryIntent.getStringExtra("Page");
@@ -65,13 +86,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
         listView = (ListView)findViewById(R.id.listView);
-        final PeopleAdapter adapter = new PeopleAdapter(people, this);
         listView.setAdapter(adapter);
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                AlertDialog.Builder adb=new AlertDialog.Builder(MainActivity.this);
-                final int positionToRemove = position;
-                //v.findViewById(id);
+
+                TextView bustField = (TextView) v.findViewById(R.id.bust);
+                toggleVisibility(bustField);
+                TextView chestField = (TextView) v.findViewById(R.id.chest);
+                toggleVisibility(chestField);
+                TextView waistField = (TextView) v.findViewById(R.id.waist);
+                toggleVisibility(waistField);
+                TextView inseamField = (TextView) v.findViewById(R.id.inseam);
+                toggleVisibility(inseamField);
+
+
+            }
+            public void toggleVisibility(TextView field){
+                if(!field.getText().toString().isEmpty()) {
+                    if (field.isShown()) {
+                        field.setVisibility(View.GONE);
+                    } else {
+                        field.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
     }

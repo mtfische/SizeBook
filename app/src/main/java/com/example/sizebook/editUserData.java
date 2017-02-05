@@ -141,11 +141,6 @@ public class editUserData extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void saveToFile(){
-
-        gson.toJson(people);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.http.conn.ConnectTimeoutException;
@@ -34,6 +35,8 @@ public class PeopleAdapter extends ArrayAdapter<Person> {
         if (convertView == null) {
             // This a new view we inflate the new layout
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            //LayoutInflater inflater = LayoutInflater.from(context);
+            //RelativeLayout inflater = (RelativeLayout) LayoutInflater.from(context);
             convertView = inflater.inflate(R.layout.person_layout, parent, false);
         }
         // Now we can fill the layout with the right values
@@ -50,11 +53,11 @@ public class PeopleAdapter extends ArrayAdapter<Person> {
 
 
         tv.setText(p.getName());
-        if(p.getBust() != 0){bustField.setText("Bust Size:" + p.getBust());}
-        if(p.getChest() != 0){chestField.setText("Chest Size:" + p.getBust());}
-        if(p.getWaist() != 0){waistField.setText("Waist Size:" + p.getWaist());}
-        if(p.getInseam() != 0){inseamField.setText("Inseam Size:" + p.getBust());}
-        date.setText("Last updated:" + p.getDate().toString());
+        if(p.getBust() != 0){bustField.setText("Bust Size: " + p.getBust()+"\u2033");}
+        if(p.getChest() != 0){chestField.setText("Chest Size: " + p.getBust()+"\u2033");}
+        if(p.getWaist() != 0){waistField.setText("Waist Size: " + p.getWaist()+"\u2033");}
+        if(p.getInseam() != 0){inseamField.setText("Inseam Size: " + p.getBust()+"\u2033");}
+        date.setText("Last updated: " + p.getDate().toString());
 
         return convertView;
     }
