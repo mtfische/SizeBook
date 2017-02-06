@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     private IOhandler loadHandler = new IOhandler(this);
     private PeopleAdapter adapter;
 
+    //Called by add button
+    //starts the addUser activity
+    //passes people array
     public void addUser(View v) {
         Gson gson = new Gson();
         Intent intent = new Intent(this, AddUser.class);
@@ -85,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
-
+            //internal method to toggle field visibility
             public void toggleVisibility(TextView field) {
                 if (!field.getText().toString().isEmpty()) {
                     if (field.isShown()) {

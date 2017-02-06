@@ -37,15 +37,15 @@ public class PeopleAdapter extends ArrayAdapter<Person> {
 
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        // First let's verify the convertView is not null
+        // check if convertView is null
         final ViewGroup parentView = parent;
         if (convertView == null) {
-            // This a new view we inflate the new layout
+            // inflate the new layout
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.person_layout, parent, false);
         }
         final int editPosition = position;
-        // Now we can fill the layout with the right values
+        // Fill the layout with the right values
         TextView tv = (TextView) convertView.findViewById(R.id.name);
         TextView bustField = (TextView) convertView.findViewById(R.id.bust);
         TextView chestField = (TextView) convertView.findViewById(R.id.chest);
@@ -55,7 +55,6 @@ public class PeopleAdapter extends ArrayAdapter<Person> {
         Person p = people.get(position);
 
         Button deleteBtn = (Button) convertView.findViewById(R.id.delete);
-        //deleteBtn.setTag(position);
         Button editBtn = (Button) convertView.findViewById(R.id.edit);
 
         editBtn.setOnClickListener(new View.OnClickListener() {
@@ -71,11 +70,12 @@ public class PeopleAdapter extends ArrayAdapter<Person> {
 
             }
         });
-
+        //listener for the delete button
         deleteBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                //delete person from arraylist
                 people.remove(editPosition);
                 IOhandler file = new IOhandler(mContext);
                 file.saveInFile(people);
@@ -92,6 +92,7 @@ public class PeopleAdapter extends ArrayAdapter<Person> {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
 
+        //set field values if set
         tv.setText(p.getName());
         if(p.getBust() != 0){bustField.setText("Bust Size: " + String.format("%.1f",p.getBust())+"\u2033");}
         if(p.getChest() != 0){chestField.setText("Chest Size: " + String.format("%.1f",p.getChest())+"\u2033");}

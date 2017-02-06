@@ -35,6 +35,7 @@ public class EditUser extends AppCompatActivity {
     private IOhandler saveHandler = new IOhandler(this);
     private int position;
 
+    //validate all fields
     public Person packageData()
     {
         int[] floatIds = {R.id.neck, R.id.bust, R.id.chest, R.id.waist, R.id.hip, R.id.inseam};
@@ -42,6 +43,7 @@ public class EditUser extends AppCompatActivity {
         int i = 0;
         boolean errorFlag = false;
 
+        //loop through all double fields validating
         for (int id : floatIds){
             try{
                 final EditText field = (EditText) findViewById(id);
@@ -101,6 +103,7 @@ public class EditUser extends AppCompatActivity {
             errorFlag = true;
         }
 
+        //if there was an error do not create the person
         if (!errorFlag) {
             int j;
             for(j = 0; j<6; j++) {
@@ -120,7 +123,7 @@ public class EditUser extends AppCompatActivity {
         }
         return null;
     }
-
+    //validation for double fields
     public Double parseDouble(EditText field, String token) throws FieldException {
         try{
             if(token.isEmpty()){return 0.0;}
@@ -134,7 +137,8 @@ public class EditUser extends AppCompatActivity {
             throw new FieldException("Field is incorrectly assigned, Must be a decimal number greater than 0.",field);
         }
     }
-
+    //validation for date field
+    //referenced https://www.mkyong.com/java/how-to-check-if-date-is-valid-in-java/
     private Date parseDate(EditText field, String dateStr) throws FieldException{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
@@ -186,10 +190,11 @@ public class EditUser extends AppCompatActivity {
         date.setText(sdf.format(p.getDate()));
     }
 
+    //called by edit button
     public void edit(View view){
 
         Person temp = packageData();
-
+        //if person was successfully created save person and finish
         if(temp != null) {
             Log.d("tag", "Person: "+temp.toString());
             people.remove(position);
@@ -198,7 +203,7 @@ public class EditUser extends AppCompatActivity {
             finish();
         }
     }
-
+    //finish activity
     public void cancel(View view)
     {
         finish();
@@ -209,11 +214,14 @@ public class EditUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
 
+        //get the people obj and position of person to edit
         Intent entryIntent = getIntent();
         String obj = entryIntent.getStringExtra("obj");
         position = entryIntent.getIntExtra("pos",0);
         Type listType = new TypeToken<ArrayList<Person>>(){}.getType();
         people = gson.fromJson(obj, listType);
+
+        //prepopulate the fields we have
         populateFields(people.get(position));
 
         ViewGroup entrylayout = (ViewGroup) findViewById(R.id.ScrollView);

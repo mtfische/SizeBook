@@ -6,6 +6,7 @@ import java.util.Date;
  * Created by Malcolm on 2017-01-28.
  */
 
+//Class to store Person data
 public class Person {
     private String  name;
     private Date date;

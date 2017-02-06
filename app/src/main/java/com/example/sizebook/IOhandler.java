@@ -24,10 +24,12 @@ public class IOhandler {
     private static final String FILENAME = "file.sav";
     private Context ctx;
 
+    //constructor gets context
     public IOhandler(Context context){
         this.ctx = context;
     };
 
+    //loads arraylist<person> from file
     public ArrayList<Person> loadFromFile() {
         ArrayList<Person> people;
         try {
@@ -49,6 +51,7 @@ public class IOhandler {
         return people;
     }
 
+    //saves arrayList<person> to file
     public void saveInFile(ArrayList<Person> people) {
         try {
             FileOutputStream fos = ctx.openFileOutput(FILENAME, Context.MODE_PRIVATE);

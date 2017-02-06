@@ -40,6 +40,7 @@ public class AddUser extends AppCompatActivity {
         int i = 0;
         boolean errorFlag = false;
 
+        //loop through the double fields
         for (int id : floatIds){
             try{
                 final EditText field = (EditText) findViewById(id);
@@ -98,7 +99,7 @@ public class AddUser extends AppCompatActivity {
             field.setError(e.getMessage());
             errorFlag = true;
         }
-
+        //if error dont create a person
         if (!errorFlag) {
             int j;
             for(j = 0; j<6; j++) {
@@ -118,7 +119,7 @@ public class AddUser extends AppCompatActivity {
         }
         return null;
     }
-
+    //Validates Double fields
     private Double parseDouble(EditText field, String token) throws FieldException {
         try{
             //Log.d("tag", "parsing  float");
@@ -133,7 +134,8 @@ public class AddUser extends AppCompatActivity {
             throw new FieldException("Field is incorrectly assigned, Must be a decimal number greater than 0.",field);
         }
     }
-
+    //validates date field
+    //referenced https://www.mkyong.com/java/how-to-check-if-date-is-valid-in-java/
     private Date parseDate(EditText field, String dateStr) throws FieldException{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
@@ -148,7 +150,7 @@ public class AddUser extends AppCompatActivity {
         }
     }
 
-
+    //onclick of add button
     public void add(View view){
 
         Person temp = packageData();
@@ -159,7 +161,7 @@ public class AddUser extends AppCompatActivity {
             finish();
         }
     }
-
+    //onclick of cancel button
     public void cancel(View view)
     {
         finish();
