@@ -9,12 +9,12 @@ import java.util.Date;
 public class Person {
     private String  name;
     private Date date;
-    private float neck;
-    private float bust;
-    private float chest;
-    private float waist;
-    private float hip;
-    private float inseam;
+    private Double neck;
+    private Double bust;
+    private Double chest;
+    private Double waist;
+    private Double hip;
+    private Double inseam;
     private String comment;
 
     public Person(String name) {
@@ -38,51 +38,49 @@ public class Person {
         this.date = date;
     }
 
-    public float getNeck() {
+    public Double getNeck() {
         return neck;
     }
 
-    public void setNeck(float neck) {
+    public void setNeck(Double neck) {
         this.neck = neck;
     }
 
-    public float getBust() {
+    public Double getBust() {
         return bust;
     }
 
-    public void setBust(float bust) {
+    public void setBust(Double bust) {
         this.bust = bust;
     }
 
-    public float getChest() {
+    public Double getChest() {
         return chest;
     }
 
-    public void setChest(float chest) {
+    public void setChest(Double chest) {
         this.chest = chest;
     }
 
-    public float getWaist() {
+    public Double getWaist() {
         return waist;
     }
 
-    public void setWaist(float waist) {
-        this.waist = waist;
-    }
+    public void setWaist(Double waist) { this.waist = waist; }
 
-    public float getHip() {
+    public Double getHip() {
         return hip;
     }
 
-    public void setHip(float hip) {
+    public void setHip(Double hip) {
         this.hip = hip;
     }
 
-    public float getInseam() {
+    public Double getInseam() {
         return inseam;
     }
 
-    public void setInseam(float inseam) {
+    public void setInseam(Double inseam) {
         this.inseam = inseam;
     }
 
@@ -93,4 +91,5 @@ public class Person {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
 }

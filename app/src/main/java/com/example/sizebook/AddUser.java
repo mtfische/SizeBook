@@ -28,22 +28,22 @@ import static com.example.sizebook.R.id.listView;
 import static java.lang.Math.round;
 
 public class AddUser extends AppCompatActivity {
-    private static final String FILENAME = "file.sav";
-    Gson gson = new Gson();
-    ArrayList<Person> people;
+    private Gson gson = new Gson();
+    private ArrayList<Person> people;
+    private IOhandler saveHandler = new IOhandler(this);
 
+    //parse the form fields
     public Person packageData()
     {
         int[] floatIds = {R.id.neck, R.id.bust, R.id.chest, R.id.waist, R.id.hip, R.id.inseam};
-        float[] floatRes = new float[6];
-        int[] stringIdS = {R.id.name, R.id.comment};
+        Double[] floatRes = new Double[6];
         int i = 0;
         boolean errorFlag = false;
 
         for (int id : floatIds){
             try{
                 final EditText field = (EditText) findViewById(id);
-                float num = parseFloat(field, field.getText().toString());
+                Double num = parseDouble(field, field.getText().toString());
                 floatRes[i] = num;
 
             }
@@ -116,19 +116,17 @@ public class AddUser extends AppCompatActivity {
             Log.d("tag", "person complete");
             return form;
         }
-        //Log.d("tag", "name blank");
         return null;
     }
 
-    private float parseFloat(EditText field, String token) throws FieldException {
+    private Double parseDouble(EditText field, String token) throws FieldException {
         try{
             //Log.d("tag", "parsing  float");
-            if(token.isEmpty()){return 0;}
-            float input = Float.parseFloat(token);
+            if(token.isEmpty()){return 0.0;}
+            Double input = Double.parseDouble(token);
             if (input < 0){
                 throw new FieldException("Field must be greater than zero",field);
             }
-            input = round(input*10)/10;
             return input;
         }
         catch(NumberFormatException e){
@@ -153,23 +151,17 @@ public class AddUser extends AppCompatActivity {
 
     public void add(View view){
 
-        Intent intent = new Intent(this, MainActivity.class);
         Person temp = packageData();
 
         if(temp != null) {
-            Log.d("tag", "Person: "+temp.toString());
             people.add(temp);
-            saveInFile();
+            saveHandler.saveInFile(people);
             finish();
         }
-        //Log.d("tag", "temp was null");
     }
 
     public void cancel(View view)
     {
-        //Intent intent = new Intent(this, MainActivity.class);
-        //intent.putExtra("Page", "Cancel");
-        //startActivity(intent);
         finish();
     }
 
@@ -177,30 +169,14 @@ public class AddUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+
+        //Get the people obj
         Intent entryIntent = getIntent();
         String obj = entryIntent.getStringExtra("obj");
-        Log.d("tag", "Json people: "+obj);
         Type listType = new TypeToken<ArrayList<Person>>(){}.getType();
         people = gson.fromJson(obj, listType);
-        Log.d("tag", "Person: "+people.toString());
+
         ViewGroup entrylayout = (ViewGroup) findViewById(R.id.ScrollView);
-    }
-
-    private void saveInFile() {
-        try {
-            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-
-            Gson gson = new Gson();
-            gson.toJson(people, out);
-            out.flush();
-            fos.close();
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
     }
 }
 

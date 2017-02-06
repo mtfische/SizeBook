@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SizeBook</string>
+    <string name="app_name">mtfische-SizeBook</string>
     <string name="formName">Your Name</string>
     <string name="formNeck">Neck Size(inches)</string>
     <string name="formBust">Bust Size(inches)</string>

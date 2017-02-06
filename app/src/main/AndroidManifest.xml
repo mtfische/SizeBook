@@ -16,10 +16,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".editUserData"
-            android:label="Edit User" />
-        <activity android:name=".AddUser" />
-        <activity android:name=".EditUser"></activity>
+            android:name=".AddUser"
+            android:label="Add User"/>
+        <activity android:name=".EditUser"
+            android:label="Edit User"></activity>
     </application>
 
 </manifest>

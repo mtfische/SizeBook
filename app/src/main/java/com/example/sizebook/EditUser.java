@@ -19,28 +19,33 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import static com.example.sizebook.R.id.date;
 import static com.example.sizebook.R.id.listView;
+import static java.lang.Math.round;
 
 public class EditUser extends AppCompatActivity {
     private static final String FILENAME = "file.sav";
     private Gson gson = new Gson();
     private ArrayList<Person> people;
+    private IOhandler saveHandler = new IOhandler(this);
     private int position;
 
     public Person packageData()
     {
         int[] floatIds = {R.id.neck, R.id.bust, R.id.chest, R.id.waist, R.id.hip, R.id.inseam};
-        float[] floatRes = new float[6];
+        Double[] floatRes = new Double[6];
         int i = 0;
         boolean errorFlag = false;
 
         for (int id : floatIds){
             try{
                 final EditText field = (EditText) findViewById(id);
-                float num = parseFloat(field, field.getText().toString());
+                Double num = parseDouble(field, field.getText().toString());
                 floatRes[i] = num;
 
             }
@@ -70,6 +75,18 @@ public class EditUser extends AppCompatActivity {
             field.setError(e.getMessage());
             errorFlag = true;
         }
+        Date date = new Date();
+        try {
+            final EditText dateField = (EditText) findViewById(R.id.date);
+            date = parseDate(dateField, dateField.getText().toString());
+        }
+        catch (FieldException e){
+            EditText field = (EditText) findViewById(e.getField().getId());
+            field.setError(e.getMessage());
+            errorFlag = true;
+        }
+
+
         try {
             final EditText commentField = (EditText) findViewById(R.id.comment);
             comment = commentField.getText().toString();
@@ -90,6 +107,7 @@ public class EditUser extends AppCompatActivity {
                 Log.d("tag", "values: " + floatRes[j]);
             }
             Person form = new Person(name);
+            form.setDate(date);
             form.setNeck(floatRes[0]);
             form.setBust(floatRes[1]);
             form.setChest(floatRes[2]);
@@ -100,15 +118,13 @@ public class EditUser extends AppCompatActivity {
             Log.d("tag", "person complete");
             return form;
         }
-        //Log.d("tag", "name blank");
         return null;
     }
 
-    public float parseFloat(EditText field, String token) throws FieldException {
+    public Double parseDouble(EditText field, String token) throws FieldException {
         try{
-            //Log.d("tag", "parsing  float");
-            if(token.isEmpty()){return 0;}
-            float input = Float.parseFloat(token);
+            if(token.isEmpty()){return 0.0;}
+            Double input = Double.parseDouble(token);
             if (input < 0){
                 throw new FieldException("Field must be greater than zero",field);
             }
@@ -118,24 +134,52 @@ public class EditUser extends AppCompatActivity {
             throw new FieldException("Field is incorrectly assigned, Must be a decimal number greater than 0.",field);
         }
     }
+
+    private Date parseDate(EditText field, String dateStr) throws FieldException{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+        if(dateStr == null || dateStr.isEmpty()){return new Date();}
+        try {
+            final EditText dateField = (EditText) findViewById(date);
+            Date date = sdf.parse(dateStr);
+            return date;
+
+        } catch (ParseException e) {
+            throw new FieldException("Invalid format. Must have form yyy-mm-dd",field);
+        }
+    }
+    //populates the field with values stored in people
     private void populateFields(Person p){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
 
+        //Fill the fields
         TextView nameField = (TextView) findViewById(R.id.name);
         nameField.setText(p.getName());
         TextView neckField = (TextView) findViewById(R.id.neck);
-        neckField.setText(Float.toString(p.getNeck()));
+        if(p.getNeck() != 0){
+            neckField.setText(String.format("%.1f",p.getNeck()));
+        }
         TextView bustField = (TextView) findViewById(R.id.bust);
-        bustField.setText(Float.toString(p.getBust()));
+        if(p.getBust() != 0) {
+            bustField.setText(String.format("%.1f", p.getBust()));
+        }
         TextView chestField = (TextView) findViewById(R.id.chest);
-        chestField.setText(Float.toString(p.getChest()));
+        if(p.getChest() != 0) {
+            chestField.setText(String.format("%.1f", p.getChest()));
+        }
         TextView waistField = (TextView) findViewById(R.id.waist);
-        waistField.setText(Float.toString(p.getWaist()));
+        if(p.getWaist() != 0) {
+            waistField.setText(String.format("%.1f", p.getWaist()));
+        }
         TextView hipField = (TextView) findViewById(R.id.hip);
-        hipField.setText(Float.toString(p.getHip()));
+        if(p.getHip() != 0) {
+            hipField.setText(String.format("%.1f", p.getHip()));
+        }
         TextView inseamField = (TextView) findViewById(R.id.inseam);
-        inseamField.setText(Float.toString(p.getInseam()));
+        if(p.getInseam() != 0) {
+            inseamField.setText(String.format("%.1f", p.getInseam()));
+        }
         TextView commentField = (TextView) findViewById(R.id.comment);
         commentField.setText(p.getComment());
         TextView date = (TextView) findViewById(R.id.date);
@@ -150,17 +194,13 @@ public class EditUser extends AppCompatActivity {
             Log.d("tag", "Person: "+temp.toString());
             people.remove(position);
             people.add(position,temp);
-            saveInFile();
+            saveHandler.saveInFile(people);
             finish();
         }
-        //Log.d("tag", "temp was null");
     }
 
     public void cancel(View view)
     {
-        //Intent intent = new Intent(this, MainActivity.class);
-        //intent.putExtra("Page", "Cancel");
-        //startActivity(intent);
         finish();
     }
 
@@ -175,23 +215,7 @@ public class EditUser extends AppCompatActivity {
         Type listType = new TypeToken<ArrayList<Person>>(){}.getType();
         people = gson.fromJson(obj, listType);
         populateFields(people.get(position));
+
         ViewGroup entrylayout = (ViewGroup) findViewById(R.id.ScrollView);
-    }
-
-    private void saveInFile() {
-        try {
-            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-
-            Gson gson = new Gson();
-            gson.toJson(people, out);
-            out.flush();
-            fos.close();
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
     }
 }
