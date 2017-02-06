@@ -15,9 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".editUserData"
-            android:label="Edit User">
-        </activity>
+        <activity
+            android:name=".editUserData"
+            android:label="Edit User" />
+        <activity android:name=".AddUser" />
+        <activity android:name=".EditUser"></activity>
     </application>
 
 </manifest>

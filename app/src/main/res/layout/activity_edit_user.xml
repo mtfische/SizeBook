@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/ScrollView"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:scrollbars="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <!--Put form controls here-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="Name: "/>
+        <EditText
+            android:id="@+id/name"
+            android:layout_height="wrap_content"
+            android:hint="@string/formName"
+            android:inputType="textPersonName"
+            android:layout_width="fill_parent">
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Date: "/>
+    <EditText
+        android:id="@+id/date"
+        android:layout_height="wrap_content"
+        android:hint='Date "yyy-mm-dd"'
+        android:inputType="date"
+        android:layout_width="fill_parent">
+    </EditText>
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="Neck Size: "/>
+        <EditText
+            android:id="@+id/neck"
+            android:layout_height="wrap_content"
+            android:hint="@string/formNeck"
+            android:inputType="numberDecimal"
+            android:layout_width="fill_parent">
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="Bust Size: "/>
+        <EditText
+            android:id="@+id/bust"
+            android:layout_height="wrap_content"
+            android:hint="@string/formBust"
+            android:inputType="numberDecimal"
+            android:layout_width="fill_parent">
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="Chest size: "/>
+        <EditText
+            android:id="@+id/chest"
+            android:layout_height="wrap_content"
+            android:hint="@string/formChest"
+            android:inputType="numberDecimal"
+            android:layout_width="fill_parent">
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="Waist size: "/>
+        <EditText
+            android:id="@+id/waist"
+            android:layout_height="wrap_content"
+            android:hint="@string/formWaist"
+            android:inputType="numberDecimal"
+            android:layout_width="fill_parent">
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="Hip size: "/>
+        <EditText
+            android:id="@+id/hip"
+            android:layout_height="wrap_content"
+            android:hint="@string/formHip"
+            android:inputType="numberDecimal"
+            android:layout_width="fill_parent">
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="Inseam: "/>
+        <EditText
+            android:id="@+id/inseam"
+            android:layout_height="wrap_content"
+            android:hint="@string/formInseam"
+            android:inputType="numberDecimal"
+            android:layout_width="fill_parent">
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="Comment: "/>
+        <EditText
+            android:id="@+id/comment"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:hint="@string/formComment"
+            android:layout_width="fill_parent">
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:text="Apply"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/apply"
+            android:onClick="edit"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:elevation="0dp">
+        </Button>
+
+        <Button
+            android:text="Cancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/cancel"
+            android:onClick="cancel"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" >
+        </Button>
+
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

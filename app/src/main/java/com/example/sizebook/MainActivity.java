@@ -1,5 +1,6 @@
 package com.example.sizebook;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -16,42 +17,59 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+import static android.R.attr.button;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String FILENAME = "file.sav";
     ArrayList<Person> people = new ArrayList<Person>();
-    final PeopleAdapter adapter = new PeopleAdapter(people, this);
+    private PeopleAdapter adapter;
 
 
-
-
-
+/*
+    public void deleteUser(View v){
+        button field = v.findViewById(R.id.delete);
+        int position = getIndex(field.getText().toString());
+        people.remove(position);
+        v.
+        //Gson gson = new Gson();
+        //Intent intent = new Intent(this,editUserData.class);
+        //String array = gson.toJson(people);
+        //intent.putExtra("obj", array);
+        //startActivity(intent);
+        saveInFile();
+        adapter.notifyDataSetChanged();
+    }
+*/
     public void editUser(View v){
         final EditText namefield = (EditText) v.findViewById(R.id.name);
         int position = getIndex(namefield.getText().toString());
         Gson gson = new Gson();
-        Intent intent = new Intent(this,editUserData.class);
+        Intent intent = new Intent(this, AddUser.class);
         String array = gson.toJson(people);
         intent.putExtra("obj", array);
         startActivity(intent);
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
     }
 
     public void addUser(View v)
     {
         Gson gson = new Gson();
-        Intent intent = new Intent(this,editUserData.class);
+        Intent intent = new Intent(this, AddUser.class);
         String array = gson.toJson(people);
         intent.putExtra("obj", array);
         startActivity(intent);
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
     }
 
     public int getIndex(String name) {
@@ -69,8 +87,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadFromFile();
+        //adapter = new PeopleAdapter(people, this);
         Gson gson = new Gson();
-        final ListView listView;
+
         Intent entryIntent = getIntent();
         //String page = "";
         String page = entryIntent.getStringExtra("Page");
@@ -85,9 +104,20 @@ public class MainActivity extends AppCompatActivity {
             Log.d("tag","people:"+people.size());
         }
 
+
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        loadFromFile();
+        final ListView listView;
+        adapter = new PeopleAdapter(people, this);
         listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
+        TextView countField = (TextView) findViewById(R.id.count);
+        countField.setText("Number of records: "+Integer.toString(people.size()));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
@@ -113,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        //adapter.notifyDataSetChanged();
+
     }
 
     private void loadFromFile() {
@@ -129,6 +161,23 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (FileNotFoundException e) {
             people = new ArrayList<Person>();
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+            gson.toJson(people, out);
+            out.flush();
+            fos.close();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException();
         } catch (IOException e) {
             throw new RuntimeException();
         }

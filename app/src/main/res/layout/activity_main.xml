@@ -11,6 +11,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.sizebook.MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/count"
+        android:textSize="20dp"/>
     <ListView
         android:id="@+id/listView"
         android:layout_height="0dp"

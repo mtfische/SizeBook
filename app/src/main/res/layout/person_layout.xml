@@ -6,7 +6,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
+        android:minHeight="56dp"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="0dp"
         android:descendantFocusability="blocksDescendants"
@@ -15,7 +16,7 @@
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="32sp"
             android:textStyle="bold">
@@ -39,7 +40,6 @@
             android:layout_marginRight="10sp"
             android:id="@+id/delete"
             android:background="@drawable/delete_icon"
-            android:onClick="deleteUser"
             android:visibility="visible">
         </Button>
     </LinearLayout>

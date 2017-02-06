@@ -18,11 +18,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import static com.example.sizebook.R.id.date;
 import static com.example.sizebook.R.id.listView;
+import static java.lang.Math.round;
 
-public class editUserData extends AppCompatActivity {
+public class AddUser extends AppCompatActivity {
     private static final String FILENAME = "file.sav";
     Gson gson = new Gson();
     ArrayList<Person> people;
@@ -51,10 +56,11 @@ public class editUserData extends AppCompatActivity {
             i++;
         }
         String name = "";
+        Date date = new Date();
         String comment = "";
         try {
             final EditText nameField = (EditText) findViewById(R.id.name);
-            name = nameField.getText().toString();
+            name = nameField.getText().toString().trim();
             if(name == null || name.isEmpty()){
                 throw new FieldException("Name Field is required",nameField);
             }
@@ -63,11 +69,22 @@ public class editUserData extends AppCompatActivity {
             }
 
         }catch (FieldException e){
-            Log.d("tag", "caught exception");
             EditText field = (EditText) findViewById(e.getField().getId());
             field.setError(e.getMessage());
             errorFlag = true;
         }
+
+        try {
+            final EditText dateField = (EditText) findViewById(R.id.date);
+            date = parseDate(dateField, dateField.getText().toString());
+        }
+        catch (FieldException e){
+            EditText field = (EditText) findViewById(e.getField().getId());
+            field.setError(e.getMessage());
+            errorFlag = true;
+        }
+
+
         try {
             final EditText commentField = (EditText) findViewById(R.id.comment);
             comment = commentField.getText().toString();
@@ -82,27 +99,28 @@ public class editUserData extends AppCompatActivity {
             errorFlag = true;
         }
 
-            if (!errorFlag) {
-                int j;
-                for(j = 0; j<6; j++) {
-                    Log.d("tag", "values: " + floatRes[j]);
-                }
-                Person form = new Person(name);
-                form.setNeck(floatRes[0]);
-                form.setBust(floatRes[1]);
-                form.setChest(floatRes[2]);
-                form.setWaist(floatRes[3]);
-                form.setHip(floatRes[4]);
-                form.setInseam(floatRes[5]);
-                form.setComment(comment);
-                Log.d("tag", "person complete");
-                return form;
+        if (!errorFlag) {
+            int j;
+            for(j = 0; j<6; j++) {
+                Log.d("tag", "values: " + floatRes[j]);
             }
-            //Log.d("tag", "name blank");
-            return null;
+            Person form = new Person(name);
+            form.setDate(date);
+            form.setNeck(floatRes[0]);
+            form.setBust(floatRes[1]);
+            form.setChest(floatRes[2]);
+            form.setWaist(floatRes[3]);
+            form.setHip(floatRes[4]);
+            form.setInseam(floatRes[5]);
+            form.setComment(comment);
+            Log.d("tag", "person complete");
+            return form;
+        }
+        //Log.d("tag", "name blank");
+        return null;
     }
 
-    public float parseFloat(EditText field, String token) throws FieldException {
+    private float parseFloat(EditText field, String token) throws FieldException {
         try{
             //Log.d("tag", "parsing  float");
             if(token.isEmpty()){return 0;}
@@ -110,41 +128,55 @@ public class editUserData extends AppCompatActivity {
             if (input < 0){
                 throw new FieldException("Field must be greater than zero",field);
             }
+            input = round(input*10)/10;
             return input;
         }
         catch(NumberFormatException e){
             throw new FieldException("Field is incorrectly assigned, Must be a decimal number greater than 0.",field);
         }
     }
+
+    private Date parseDate(EditText field, String dateStr) throws FieldException{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+        if(dateStr == null || dateStr.isEmpty()){return new Date();}
+        try {
+            final EditText dateField = (EditText) findViewById(date);
+            Date date = sdf.parse(dateStr);
+            return date;
+
+        } catch (ParseException e) {
+            throw new FieldException("Invalid format. Must have form yyy-mm-dd",field);
+        }
+    }
+
+
     public void add(View view){
 
         Intent intent = new Intent(this, MainActivity.class);
-        Log.d("tag", "packaging");
         Person temp = packageData();
-        //Log.d("tag", "temp:"+temp.getName());
 
         if(temp != null) {
             Log.d("tag", "Person: "+temp.toString());
             people.add(temp);
             saveInFile();
-            //intent.putExtra("obj", this.packageData());
-            intent.putExtra("Page", "add");
-            startActivity(intent);
+            finish();
         }
         //Log.d("tag", "temp was null");
     }
 
     public void cancel(View view)
     {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("Page", "Cancel");
-        startActivity(intent);
+        //Intent intent = new Intent(this, MainActivity.class);
+        //intent.putExtra("Page", "Cancel");
+        //startActivity(intent);
+        finish();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_user_data);
+        setContentView(R.layout.activity_add_user);
         Intent entryIntent = getIntent();
         String obj = entryIntent.getStringExtra("obj");
         Log.d("tag", "Json people: "+obj);
@@ -171,3 +203,4 @@ public class editUserData extends AppCompatActivity {
         }
     }
 }
+
